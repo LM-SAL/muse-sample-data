@@ -17,17 +17,16 @@ https://github.com/LM-SAL/muse-sample-data/releases/download/<tag>/<filename>
 Use `upload_data.sh` (requires the [`gh` CLI](https://cli.github.com/), authenticated):
 
 ```bash
-TAG=v1 ./upload_data.sh path/to/file1.nc path/to/file2.nc
+./upload_data.sh path/to/file1.nc path/to/file2.nc
 ```
 
-It creates the release if needed, uploads the files (overwriting same-named
-assets), and prints the URL + SHA-256 entries to paste into `_REGISTRY` in
-`muse/data/__init__.py`.
+Always upload to the `v1` tag (the default) and let it clobber same-named
+assets — we keep no file history, one release holds the current copy of
+everything. The script prints the URL + SHA-256 entries to paste into
+`_REGISTRY` in `muse/data/__init__.py`; a changed file changes its hash, so
+update `_REGISTRY` in the same PR.
 
 Notes:
 
-- Re-uploading a changed file under the same name changes its hash — update
-  `_REGISTRY` in the same PR, or upload under a new tag to keep old muse
-  versions working.
 - Per-file limit is 2 GB (GitHub release asset limit).
 - Zarr stores must be uploaded as a single `.tar.gz` (assets are flat files).
