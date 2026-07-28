@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+#
 # Upload sample data files as release assets and print _REGISTRY entries
 # for muse/data/__init__.py.
 #
 # Usage: TAG=v1 ./upload_data.sh file1.nc file2.nc ...
+
 set -euo pipefail
 
 REPO=${REPO:-LM-SAL/muse-sample-data}
